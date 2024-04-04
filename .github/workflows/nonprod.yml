@@ -9,14 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-        BUCKET_NAME: cfst-3457-fcc0efccaaa4039c50375a644b-nonprodbucket-znatxpkazvvh
+      BUCKET_NAME: cfst-3457-fcc0efccaaa4039c50375a644b-nonprodbucket-znatxpkazvvh
     steps:
       - name: checkout code
         uses: actions/checkout@v2
       - name: configure aws cli
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
           aws-region: us-east-1
       - name: set up node js
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 14
       - name: build site
-        run:
+        run: |
           npm ci
           npm run build
       - name: deploy files to bucket
